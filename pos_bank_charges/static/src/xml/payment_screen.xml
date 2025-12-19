@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="asta_pos_commission_customization.PaymentScreenMethods" t-inherit="point_of_sale.PaymentScreenMethods"
+       t-inherit-mode="extension">
+        <xpath expr="//div[@class='payment-method-display d-flex align-items-center gap-2 text-wrap text-start lh-sm']"
+               position="inside">
+            <t t-if="paymentMethod.bank_charges_type == 'percentage'">
+                <span class="ms-auto bg-light"><t t-esc="paymentMethod.bank_charge_rate * 100"/>%</span>
+            </t>
+            <t t-else="">
+                <span class="ms-auto bg-light"><t t-esc="env.utils.formatCurrency(paymentMethod.bank_charge_amount)"/></span>
+            </t>
+        </xpath>
+    </t>
+
+    <t t-name="asta_pos_commission_customization.PaymentScreenPaymentLines" t-inherit="point_of_sale.PaymentScreenPaymentLines"
+       t-inherit-mode="extension">
+        <xpath expr="//div[@class='payment-amount px-3']" position="before">
+            <div class="px-1">
+                <t t-if="line.get_bank_charges() > 0">
+                    <t t-esc="env.utils.formatCurrency(line.get_bank_charges())"/>
+                </t>
+           </div>
+        </xpath>
+        <xpath expr="//div[@class='paymentline d-flex align-items-center bg-view border rounded-3']//div[@class='payment-amount px-3']" position="before">
+            <div class="px-1">
+                <t t-if="line.get_bank_charges() > 0">
+                    <t t-esc="env.utils.formatCurrency(line.get_bank_charges())"/>
+                </t>
+           </div>
+        </xpath>
+    </t>
+
+</templates>

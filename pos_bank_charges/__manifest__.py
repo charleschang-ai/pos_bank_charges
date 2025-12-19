@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+################################################################################
+#    Author: Charles
+#
+################################################################################
+{
+    'name': 'Pos Bank Charges',
+    'version': '18.0.1.0.0',
+    'category': 'Extra Tools',
+    'summary': """POS terminals charge customers a transaction fee when collecting payments.""",
+    'description': """POS terminals charge customers a transaction fee when collecting payments.""",
+    'author': 'Charles Chang',
+    'maintainer': 'Charles',
+    'depends': ['base', 'point_of_sale'],
+    'data': [
+        'data/product_product_data.xml',
+        'views/pos_payment_method_views.xml',
+    ],
+    "assets": {
+        'point_of_sale._assets_pos': [
+            'pos_bank_charges/static/src/**/*',
+        ],
+    },
+    'images': ['static/description/icon.png'],
+    'license': 'AGPL-3',
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+    'price': 20,
+    'currency': "USD",
+}

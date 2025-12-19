@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_pos_payment_method_view_form_add" model="ir.ui.view">
+        <field name="name">view.pos.payment.method.form.add1</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <field name="enable_bank_charges"/>
+                <field name="bank_charges_type" widget="radio" class="oe_inline"/>
+                <field name="bank_charge_rate" widget="percentage"
+                    class="oe_inline" invisible="bank_charges_type != 'percentage'"/>
+                <field name="bank_charge_amount" invisible="bank_charges_type != 'fixed'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_view_pos_pos_form_view_form_add" model="ir.ui.view">
+        <field name="name">view.pos.pos.form.add2</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_ids']//list//field[@name='amount']" position="after">
+                <field name="bank_charges"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
