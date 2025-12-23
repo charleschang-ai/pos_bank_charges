@@ -5,7 +5,7 @@
 ################################################################################
 {
     'name': 'Pos Bank Charges Enhanced',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Extra Tools',
     'summary': """POS terminals charge customers a transaction fee when collecting payments.(Enhanced)""",
     'description': """POS terminals charge customers a transaction fee when collecting payments.""",
@@ -22,7 +22,7 @@
         ],
     },
     'images': ['static/description/icon.png'],
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,
     'application': False,

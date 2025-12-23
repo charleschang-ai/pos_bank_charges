@@ -8,7 +8,7 @@ patch(PaymentScreen.prototype, {
 
     async add_bank_charges_paymentline() {
         const order = this.currentOrder;
-        if (order._isRefundOrder())  return;
+        if (this.isRefundOrder)  return;
 
         const bankChargesProduct = this.pos.models['product.product'].find(p =>
             p.is_bank_charge === true);
@@ -29,12 +29,11 @@ patch(PaymentScreen.prototype, {
             product_id: bankChargesProduct,
             order_id: order,
         });
-
         order.payment_ids.forEach(pl => {
+
             const charges = pl.bank_charges || 0;
             if (charges > 0) {
-                const newAmt = pl.get_amount() + charges;
-                pl.set_amount(newAmt);
+                pl.amount = pl.amount + charges;
             }
         });
     },
